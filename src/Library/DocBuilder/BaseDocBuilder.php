@@ -54,6 +54,12 @@ abstract class BaseDocBuilder
     abstract function build(array $annotate_route): string;
 
     /**
+     * 生成文件的后缀
+     * @return string
+     */
+    abstract function getExt(): string;
+
+    /**
      *
      */
     function afterBuild()

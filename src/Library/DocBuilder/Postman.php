@@ -169,4 +169,9 @@ class Postman extends BaseDocBuilder
     {
 
     }
+
+    function getExt(): string
+    {
+        return 'json';
+    }
 }

@@ -105,7 +105,7 @@ class DocBuilder
             mkdir($path, true, 0777);
             umask($mask);
         }
-        $filename = 'annotate_' . date('Ymd_His') . '.json';
+        $filename = 'annotate_' . date('Ymd_His') . '.' . $this->driver->getExt();
         $this->file = $path . DIRECTORY_SEPARATOR . $filename;
         $result = file_put_contents($this->file, $document);
         $this->output->writeln('[annotate] document generator success : ' . $this->file);

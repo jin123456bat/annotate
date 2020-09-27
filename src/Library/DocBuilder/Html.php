@@ -26,19 +26,24 @@ class Html extends BaseDocBuilder
     function build(array $annotate_route): string
     {
         //先生成markdown
-        $this->markdownParser = new Parsedown();
-        $fileContent = file_get_contents(resource_path('views/vendor/annotate/template.md'));
-        $htmlContent = $this->convertMarkdownToHtml($fileContent);
-        $content = $this->convertMarkdownToHtml($htmlContent);
-        return view('annotate::empty')->with('content', $content)->render();
+//        $this->markdownParser = new Parsedown();
+//        $fileContent = file_get_contents(resource_path('views/vendor/annotate/template.md'));
+//        $htmlContent = $this->convertMarkdownToHtml($fileContent);
+//        $content = $this->convertMarkdownToHtml($htmlContent);
+        return view('annotate::html')->with('annotates', $annotate_route)->render();
     }
 
     /**
      * @param $markdown
      * @return string
      */
-    public function convertMarkdownToHtml($markdown): string
+//    public function convertMarkdownToHtml($markdown): string
+//    {
+//        return $this->markdownParser->setBreaksEnabled(true)->text($markdown);
+//    }
+
+    function getExt(): string
     {
-        return $this->markdownParser->setBreaksEnabled(true)->text($markdown);
+        return 'html';
     }
 }

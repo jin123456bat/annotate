@@ -11,4 +11,9 @@ class MarkDown extends BaseDocBuilder
     {
         // TODO: Implement build() method.
     }
+
+    function getExt(): string
+    {
+        return 'md';
+    }
 }
