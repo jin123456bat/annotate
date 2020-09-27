@@ -16,6 +16,11 @@ use Symfony\Component\Console\Input\InputInterface;
 class DocBuilder
 {
     /**
+     * @var array
+     */
+    private $config;
+
+    /**
      * @var BaseDocBuilder
      */
     private $driver;
@@ -37,11 +42,20 @@ class DocBuilder
 
     /**
      * DocBuilder constructor.
-     * @param BaseDocBuilder $driver
+     * @param array $config
+     * @param InputInterface|null $input
+     * @param OutputStyle|null $output
      */
-    function __construct(BaseDocBuilder $driver)
+    function __construct(array $config, InputInterface $input = null, OutputStyle $output = null)
     {
-        $this->driver = $driver;
+        $this->config = $config;
+        $this->input = $input;
+        $this->output = $output;
+    }
+
+    function setDriver(BaseDocBuilder $baseDocBuilder)
+    {
+        $this->driver = $baseDocBuilder;
     }
 
     /**
@@ -59,7 +73,7 @@ class DocBuilder
     function setOutput(OutputStyle $output)
     {
         $this->output = $output;
-        $this->driver->setOuput($output);
+        $this->driver->setOutput($output);
     }
 
     /**

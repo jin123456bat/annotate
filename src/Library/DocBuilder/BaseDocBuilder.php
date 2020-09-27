@@ -64,7 +64,7 @@ abstract class BaseDocBuilder
     /**
      * @param InputInterface $input
      */
-    function setInput(InputInterface $input)
+    public function setInput(InputInterface $input)
     {
         $this->input = $input;
     }
@@ -72,10 +72,8 @@ abstract class BaseDocBuilder
     /**
      * @param OutputStyle $output
      */
-    function setOutput(OutputStyle $output)
+    public function setOutput(OutputStyle $output)
     {
         $this->output = $output;
     }
-
-
 }

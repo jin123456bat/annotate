@@ -56,7 +56,8 @@ class AnnotateApiDocCommand extends Command
             if (!class_exists($driver)) {
                 throw new Exception('Annotate [Error] : Driver Not Exist ' . $driver);
             }
-            $docBuilder = new DocBuilder(new $driver($driver_config));
+            $docBuilder = new DocBuilder(config('annotate'));
+            $docBuilder->setDriver(new $driver($driver_config));
             $docBuilder->setInput($this->input);
             $docBuilder->setOutput($this->output);
             $file = $docBuilder->build($annotate_route);

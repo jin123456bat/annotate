@@ -31,11 +31,6 @@ class Html extends BaseDocBuilder
         $htmlContent = $this->convertMarkdownToHtml($fileContent);
         $content = $this->convertMarkdownToHtml($htmlContent);
         return view('annotate::empty')->with('content', $content)->render();
-
-//        $view = view('annotate::html');
-//        return $view->render(function($view,$content){
-//
-//        });
     }
 
     /**
