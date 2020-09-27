@@ -99,7 +99,7 @@ class DocBuilder
      */
     function save(string $document): bool
     {
-        $path = $this->config['storage'];
+        $path = $this->config['storage'] ?? storage_path('annotate/document');
         if (!is_dir($path)) {
             $mask = umask(0);
             mkdir($path, true, 0777);
@@ -108,7 +108,7 @@ class DocBuilder
         $filename = 'annotate_' . date('Ymd_His') . '.json';
         $this->file = $path . DIRECTORY_SEPARATOR . $filename;
         $result = file_put_contents($this->file, $document);
-        $this->output->writeln('[annotate]文档生成成功:' . $this->file);
+        $this->output->writeln('[annotate] document generator success : ' . $this->file);
         return $result > 0;
     }
 
