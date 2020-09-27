@@ -1,0 +1,27 @@
+{
+    "name": "jin123456bat/annotate",
+    "description": "利用注解自动生成laravel项目的api文档",
+    "type": "library",
+    "require": {
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jin123456bat",
+            "email": "jinchengchen@linctex.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Annotate\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "aliases": {},
+            "providers": [
+                "Annotate\\Providers\\AnnotateServiceProvider"
+            ]
+        }
+    }
+}
