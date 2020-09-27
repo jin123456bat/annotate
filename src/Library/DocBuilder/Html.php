@@ -4,14 +4,46 @@
 namespace Annotate\Library\DocBuilder;
 
 
+use Parsedown;
+use Throwable;
+
+/**
+ * Class Html
+ * @package Annotate\Library\DocBuilder
+ */
 class Html extends BaseDocBuilder
 {
+    /**
+     * @var Parsedown
+     */
+    private $markdownParser;
 
+    /**
+     * @param array $annotate_route
+     * @return string
+     * @throws Throwable
+     */
     function build(array $annotate_route): string
     {
-        $template = resource_path('/views/html');
+        //先生成markdown
+        $this->markdownParser = new Parsedown();
+        $fileContent = file_get_contents(resource_path('views/vendor/annotate/template.md'));
+        $htmlContent = $this->convertMarkdownToHtml($fileContent);
+        $content = $this->convertMarkdownToHtml($htmlContent);
+        return view('annotate::empty')->with('content', $content)->render();
 
+//        $view = view('annotate::html');
+//        return $view->render(function($view,$content){
+//
+//        });
+    }
 
-        return '';
+    /**
+     * @param $markdown
+     * @return string
+     */
+    public function convertMarkdownToHtml($markdown): string
+    {
+        return $this->markdownParser->setBreaksEnabled(true)->text($markdown);
     }
 }

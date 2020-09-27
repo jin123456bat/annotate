@@ -57,7 +57,9 @@ class AnnotateApiDocCommand extends Command
                 throw new Exception('Annotate [Error] : Driver Not Exist ' . $driver);
             }
             $docBuilder = new DocBuilder(new $driver($driver_config));
-            $document = $docBuilder->build($annotate_route);
+            $docBuilder->setInput($this->input);
+            $docBuilder->setOutput($this->output);
+            $file = $docBuilder->build($annotate_route);
 
             $savers = config('annotate.saver');
             foreach ($savers as $saver => $saver_config) {
@@ -65,7 +67,7 @@ class AnnotateApiDocCommand extends Command
                     throw new Exception('Annotate [Error] : Saver Not Exist ' . $saver);
                 }
                 $saver = new Saver(new $saver($this->input, $this->output, $saver_config));
-                $saver->save($document);
+                $saver->save($file);
             }
         }
     }

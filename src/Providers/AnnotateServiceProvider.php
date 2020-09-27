@@ -33,6 +33,21 @@ class AnnotateServiceProvider extends ServiceProvider
                 AnnotateApiTestCommand::class,
             ]);
         }
+
+        $root = dirname(dirname(__DIR__));
+        $this->publishes([
+            //发布配置文件
+            $root . '/config/annotate.php' => config_path('annotate.php'),
+        ]);
+        //发布数据库
+        $this->loadMigrationsFrom($root . '/migrations');
+        //发布路由
+        $this->loadRoutesFrom($root . '/routes/annotate.php');
+        //发布视图
+        $this->loadViewsFrom($root . '/resources/views', 'annotate');
+        $this->publishes([
+            $root . '/resources/views' => resource_path('views/vendor/annotate'),
+        ]);
     }
 
     public function provides()
