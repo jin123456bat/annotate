@@ -53,6 +53,9 @@ class DocBuilder
         $this->output = $output;
     }
 
+    /**
+     * @param BaseDocBuilder $baseDocBuilder
+     */
     function setDriver(BaseDocBuilder $baseDocBuilder)
     {
         $this->driver = $baseDocBuilder;
